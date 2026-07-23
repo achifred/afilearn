@@ -1,0 +1,38 @@
+services:
+  pipeline:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: elt-load-pipeline
+
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+    command: python -m app.main
+
+  
+  db:
+    image: postgres:17-alpine
+    container_name: eltdb
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      -'5432:5432'
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "db", "-U", "${DB_USER}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  dbdata:

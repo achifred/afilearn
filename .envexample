@@ -1,0 +1,11 @@
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=your_database_name
+DB_USER=your_username
+DB_PASSWORD=your_password
+
+BATCH_SIZE=100
+
+DATA_ROOT_PATH=root_path_to_raw_csv_data_files
+FAILED_DATA_PATH=path_failed_csv_data_file
+PROCESSED_DATA_PATH=path_to_processed_csv_data_files
