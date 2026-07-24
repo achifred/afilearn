@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS assessments(
     code_presentation VARCHAR(10) NOT NULL,
     id_assessment VARCHAR(10) NOT NULL,
     assessment_type VARCHAR(10) NOT NULL,
-    assessment_date VARCHAR(10) NOT NULL,
+    "date" VARCHAR(10) NOT NULL,
     weight VARCHAR(10) NOT NULL
 );
 
@@ -63,6 +63,6 @@ CREATE TABLE IF NOT EXISTS student_vles(
     id BIGSERIAL PRIMARY KEY,
     id_student VARCHAR(10) NOT NULL,
     id_site VARCHAR(10) NOT NULL,
-    date_accessed VARCHAR(10),
+    "date" VARCHAR(10),
     sum_click VARCHAR(10)
 );

@@ -1,0 +1,24 @@
+afilearn:
+  target: "{{env_var('APP_ENV','dev')}}"
+
+  outputs:
+    dev:
+      type: "{{ env_var('DB_TYPE', 'postgres') }}"
+      host: "{{ env_var('DB_HOST')}}"
+      port: "{{ env_var('DB_PORT', '5432') | as_number }}"
+      user: "{{ env_var('DB_USER') }}"
+      password: "{{ env_var('DB_PASSWORD') }}"
+      dbname: "{{ env_var('DB_NAME') }}"
+      schema: clean
+      threads: 2
+
+    
+    prod:
+      ype: "{{ env_var('DB_TYPE', 'postgres') }}"
+      host: "{{ env_var('DB_HOST')}}"
+      port: "{{ env_var('DB_PORT', '5432') | as_number }}"
+      user: "{{ env_var('DB_USER') }}"
+      password: "{{ env_var('DB_PASSWORD') }}"
+      dbname: "{{ env_var('DB_NAME') }}"
+      schema: clean
+      threads: 2

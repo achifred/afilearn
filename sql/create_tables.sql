@@ -9,21 +9,24 @@ CREATE TABLE IF NOT EXISTS modules(
 
 CREATE TABLE IF NOT EXISTS presentations(
     presentation_id SERIAL PRIMARY KEY,
-    presentation_code VARCHAR(10) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS module_presentations(
-    module_presentation_id SERIAL PRIMARY KEY,
     module_id BIGINT NOT NULL,
-    presentation_id BIGINT NOT NULL,
-    module_presentation_length INT,
+    presentation_code VARCHAR(10) NOT NULL,
+    presentation_length INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_module_id_module_presentation FOREIGN KEY(module_id) REFERENCES modules(module_id),
-    CONSTRAINT fk_presentation_id_module_presentation FOREIGN KEY(presentation_id) REFERENCES presentations(presentation_id)
+    CONSTRAINT fk_module_id_presentation FOREIGN KEY(module_id) REFERENCES modules(module_id),
 );
+
+-- CREATE TABLE IF NOT EXISTS module_presentations(
+--     module_presentation_id SERIAL PRIMARY KEY,
+--     module_id BIGINT NOT NULL,
+--     presentation_id BIGINT NOT NULL,
+--     module_presentation_length INT,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+--     CONSTRAINT fk_presentation_id_module_presentation FOREIGN KEY(presentation_id) REFERENCES presentations(presentation_id)
+-- );
 
 CREATE TABLE IF NOT EXISTS students(
     student_id BIGINT PRIMARY KEY,
@@ -99,7 +102,7 @@ CREATE TABLE IF NOT EXISTS vles(
 CREATE TABLE IF NOT EXISTS student_vles(
     student_vle_id SERIAL PRIMARY KEY,
     student_id BIGINT NOT NULL,
-    vle_id BIGINT NOT NULL,
+    vle_id BIGINT NOT NULL, 
     access_date_offset VARCHAR(10),
     sum_click INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

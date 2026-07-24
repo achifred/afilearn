@@ -99,3 +99,9 @@ data/failed/*
 tmp/
 temp/
 .cache/
+
+#dbt
+target/
+dbt_packages/
+logs/
+.env

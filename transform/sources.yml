@@ -1,0 +1,22 @@
+version: 2
+ 
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw OULAD tables, loaded as-is from the original CSVs."
+    tables:
+      - name: student_info
+        description: "One row per student per module presentation: demographics and final result."
+      - name: student_registrations
+        description: "Registration and unregistration dates per student per module presentation."
+      - name: student_assessments
+        description: "Scores students received for each assessment they submitted."
+      - name: assessments
+        description: "Assessment metadata per module presentation (type, due date, weight)."
+      - name: courses
+        description: "Module presentation metadata, including length in days."
+      - name: vles
+        description: "Metadata about VLE (virtual learning environment) materials/activities."
+      - name: student_vles
+        description: "Daily student interactions (clicks) with VLE materials."
+ 
