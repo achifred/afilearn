@@ -6,7 +6,7 @@
 }}
 
 select
-    {{ dbt_utils.generate_surrogate_key('module_code, presentation_code') }} as presentation_id,
+    {{ dbt_utils.generate_surrogate_key(['module_code, presentation_code']) }} as presentation_id,
     m.module_id,
     c.presentation_code,
     c.module_presentation_length,

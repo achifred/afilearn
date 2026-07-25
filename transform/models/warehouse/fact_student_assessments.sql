@@ -4,7 +4,7 @@
 ) }}
 
 select
-    {{ dbt_utils.generate_surrogate_key('assessment_id','student_id') }} as student_assessment_id,
+    {{ dbt_utils.generate_surrogate_key(['assessment_id','student_id']) }} as student_assessment_id,
     ds.student_id,
     da.assessment_id,
     sa.date_submitted_offset,

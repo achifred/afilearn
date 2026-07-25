@@ -4,7 +4,7 @@
 ) }}
 
 select
-    {{ dbt_utils.generate_surrogate_key('student_id','vle_id') }} as student_vle_id,
+    {{ dbt_utils.generate_surrogate_key(['student_id','vle_id']) }} as student_vle_id,
     ds.student_id,
     dv.vle_id,
     sv.access_date_offset,

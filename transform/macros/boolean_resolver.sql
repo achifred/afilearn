@@ -3,7 +3,7 @@
 case
     when {{ column_name }} is null then false
 
-    when trim({{ column_name }}) in true_values then true
+    when trim({{ column_name }}) in ({{ true_values }}) then true
     else false
 end
 {% endmacro% }
