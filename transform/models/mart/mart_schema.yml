@@ -1,0 +1,87 @@
+
+version: 2
+
+models:
+  - name: mart_student_perfomance
+    config:
+      contract:
+        enforced: true
+    description: "aggregated student performance mart containing academic outcomes,
+      assessment performance, and learning engagement metrics at the
+      student-module-presentation level"
+
+    columns:
+      - name: student_perfomance_id
+        data_type: varchar(100)
+        constraints:
+          - type: primary_key
+
+      - name: student_id
+        data_type: varchar(10)
+        constraints:
+          - type: not_null
+
+      - name: module_id
+        data_type: varchar(10)
+        constraints:
+          - type: not_null
+
+      - name: presentation_id
+        data_type: varchar(10)
+        constraints:
+          - type: not_null
+
+      - name: total_assessment
+        description: "total assessments available for student for the module"
+        data_type: int
+        constraints:
+          - type: not_null
+
+      - name: assessments_submitted
+        description: "total assessments submitted by student"
+        data_type: int
+        constraints:
+          - type: not_null
+
+
+      - name: average_assessment_score
+        data_type: information
+        constraints:
+          - type: not_null
+
+      - name: lowest_assessment_score
+        data_type: int
+        constraints:
+          - type: not_null    
+
+      - name: highest_assessment_score
+        data_type: int
+        constraints:
+          - type: not_null
+
+      - name: total_vle_clicks
+        data_type: int
+        constraints:
+          - type: not_null
+
+      - name: final_result
+        data_type: varchar(100)
+        constraints:
+          - type: not_null
+
+      - name: is_passed
+        data_type: boolean
+        constraints:
+          - type: not_null
+
+      - name: created_at
+        data_type: timestamp
+        constraints:
+          - type: default 
+            expression: current_timestamp
+
+      - name: updated_at
+        data_type: timestamp
+        constraints:
+          - type: default 
+            expression: current_timestamp

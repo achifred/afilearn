@@ -122,11 +122,11 @@ models:
         constraints:
           - type: default
             expression: 0
-      - name: disablity
-        data_type: varchar(10)
+      - name: is_banked
+        data_type: boolean
         constraints:
           - type: default
-            expression: 'N'
+            expression: false
       - name: created_at
         data_type: timestamp
         constraints:
@@ -185,16 +185,20 @@ models:
       - name: updated_at
         data_type: timestamp
 
-  - name: assessments
+  - name: dim_assessments
     config:
       contract:
         enforced: true
-    description: "table for assessments"
+    description: " table for assessments"
     columns:
       - name: assessment_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: primary_key
+      - name: assessment_code
+        data_type: varchar(20)
+        constraints:
+          - type: not_null
       - name: presentation_id
         data_type: varchar(100)
         constraints:
@@ -211,7 +215,7 @@ models:
           - type: default
             expression: 0
       - name: assessment_weight
-        data_type: int
+        data_type: numeric(4,1)
         constraints:
           - type: default
             expression: 0
@@ -223,14 +227,14 @@ models:
       - name: updated_at
         data_type: timestamp
   
-  - name: student_assessments
+  - name: fact_student_assessments
     config:
       contract:
         enforced: true
     description: "table for student assessments"
     columns:
       - name: student_assessment_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: primary_key
       - name: student_id
@@ -240,16 +244,13 @@ models:
             to: ref('dim_students')
             to_column: [student_id]
       - name: assessment_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: foreign_key
-            to: ref('assessments')
+            to: ref('dim_assessments')
             to_column: [assessment_id]
       - name: date_submitted_offset
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
       - name: is_banked
         data_type: boolean
         constraints:
@@ -271,32 +272,37 @@ models:
           - type: default 
             expression: current_timestamp
   
-  - name: vles
+  - name: dim_vles
     config:
       contract:
         enforced: true
     description: "table for vles"
     columns:
       - name: vle_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: primary_key
+      - name: site_id
+        data_type: varchar(20)
+        constraints:
+          - type: not_null
+          - type: unique
       - name: presentation_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_module_presentations')
             to_column: [presentation_id]
-      - name: activity_type_id
+      - name: vle_activity_type_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_vle_activity_types')
             to_column: [vle_activity_type_id]
       - name: week_from
-        data_type: varchar(20)
+        data_type: int
       - name: week_to
-        data_type: varchar(20)
+        data_type: int
       - name: created_at
         data_type: timestamp
         constraints:
@@ -308,14 +314,14 @@ models:
           - type: default 
             expression: current_timestamp
   
-  - name: student_vles
+  - name: fact_student_vles
     config:
       contract:
         enforced: true
     description: "table for student vles"
     columns:
       - name: student_vle_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: primary_key
       - name: student_id
@@ -325,10 +331,10 @@ models:
             to: ref('dim_students')
             to_column: [student_id]
       - name: vle_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: foreign_key
-            to: ref('vles')
+            to: ref('dim_vles')
             to_column: [vle_id]
       - name: access_date_offset
         data_type: int

@@ -20,15 +20,15 @@ select
     si.final_result as final_result,
     current_timestamp as created_at,
     current_timestamp as updated_at
-    from {{ref('stg_student_registrations')}} as sr
-    inner join {{ ref('stg_student_info') }} as si 
+    from {{ref('stg_student_registrations')}} sr
+    inner join {{ ref('stg_student_info') }} si 
     on sr.id_student = si.student_id 
     and sr.code_module = si.code_module
     and sr.code_presentation = si.code_presentation
     inner join {{ ref('dim_students') }} ds
     on si.student_id = ds.student_number
-    inner join {{ ref('dim_modules') }} as m on sr.code_module = m.module_code
-    inner join {{ ref('dim_module_presentations') }} as p 
+    inner join {{ ref('dim_modules') }} m on sr.code_module = m.module_code
+    inner join {{ ref('dim_module_presentations') }} p 
     on m.module_id = p.module_id 
     and p.presentation_code = sr.presentation_code
 

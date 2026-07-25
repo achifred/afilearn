@@ -59,11 +59,11 @@ models:
         constraints:
           - type: default
             expression: 0
-      - name: disablity
-        data_type: varchar(10)
+      - name: is_disabled
+        data_type: boolean
         constraints:
           - type: default
-            expression: 'N'
+            expression: false
       - name: final_result
         data_type: varchar(100)
      
@@ -115,7 +115,7 @@ models:
           - type: default
             expression: 0
   
-  - name: student_assessments
+  - name: stg_student_assessments
     description: "staging table for student assessments"
     columns:
       - name: assessment_id
@@ -129,15 +129,12 @@ models:
       - name: date_submitted_offset
         data_type: int
       - name: is_banked
-        data_type: int
+        data_type: boolean
         constraints:
           - type: default
-            expression: 0
+            expression: false
       - name: score
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
 
   
   - name: vles

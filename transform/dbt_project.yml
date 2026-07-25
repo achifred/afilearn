@@ -41,4 +41,4 @@ models:
     
     mart:
       +schema: mart
-      +schema: incremental
+      +materialized: incremental

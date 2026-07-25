@@ -3,6 +3,7 @@
 {% if bound == "lower" %}
 
 case
+    when {{column_name}} is null then null
     when {{ column_name }} like '%-%'
         then split_part({{ column_name }}, '-', 1)::int
     else null
@@ -11,6 +12,7 @@ end
 {% elif bound == "upper" %}
 
 case
+    when {{column_name}} is null then null
     when {{ column_name }} like '%-%'
         then regexp_replace(
             split_part({{ column_name }}, '-', 2),

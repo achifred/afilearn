@@ -12,5 +12,5 @@ select
     c.module_presentation_length,
     current_timestamp as created_at,
     current_timestamp as updated_at
-from {{ ref('stg_courses') }} as c
-left join {{ ref('stg_modules') }} as m on c.code_module = m.module_code
+from {{ ref('stg_courses') }} c
+inner join {{ ref('stg_modules') }} m on c.code_module = m.module_code
