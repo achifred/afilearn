@@ -35,10 +35,13 @@ models:
     staging:
       +schema: staging
       +materialized: view
+      +tags: ["staging"]
     
     warehouse:
       +schema: warehouse
+      +tags: ["warehouse"]
     
     mart:
       +schema: mart
       +materialized: incremental
+      +tags: ["mart"]
