@@ -9,4 +9,4 @@ select
     trim(assessment_type) as assessment_type,
     {{ null_resolver('"date"', 'int') }} as submission_date_offset,
     weight::numeric(4,1) as assessment_weight
-from {{ source('raw', 'assessment') }}
+from {{ source('raw', 'assessments') }}

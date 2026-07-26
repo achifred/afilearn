@@ -1,7 +1,7 @@
 {% macro is_passed(column_name) %}
 
-{% set failed_values = ['withdraw','fail','?'] %}
-{% set passed_values = ['pass','distinction'] %}
+{% set failed_values = ('withdraw','fail','?') %}
+{% set passed_values = ('pass','distinction') %}
 
 case
     when {{ column_name }} is null then false

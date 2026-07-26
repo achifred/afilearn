@@ -1,7 +1,8 @@
 {{
     config(
         materialized = 'incremental',
-        unique_key = 'assessment_id'
+        unique_key = 'assessment_id',
+        on_schema_change='append_new_columns'
     )
 }}
 
@@ -16,5 +17,5 @@ select
     current_timestamp as updated_at
 from {{ ref('stg_assessments') }} sa
 inner join {{ ref('dim_modules') }}  dm on sa.module_code = dm.module_code
-inner join {{ ref('dim_presentations') }}  dp 
+inner join {{ ref('dim_module_presentations') }}  dp 
 on dm.module_id = dp.module_id and dp.presenatation_code = sa.presenatation_code

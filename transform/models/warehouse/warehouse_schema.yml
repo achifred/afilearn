@@ -12,21 +12,20 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: module_code
         data_type: varchar(10)
         constraints:
           - type: unique
           - type: not_null
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+        
+
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+        
 
   - name: dim_module_presentations
     config:
@@ -38,28 +37,29 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: module_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_modules')
             to_column: [module_id]
+
       - name: presentation_code
         data_type: varchar(10)
         data_test:
           - not_null
+
       - name: module_presentation_length
         data_type: int
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+        
+
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+        
   
   - name: dim_vle_activity_types
     config:
@@ -71,20 +71,19 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: vle_activity_type
         data_type: varchar(100)
         constraints:
           - type: not_null
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+       
+
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+       
 
   - name: dim_students
     config:
@@ -96,47 +95,49 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: student_number
         data_type: int
         constraints:
           - type: not_null
+
       - name: region
         data_type: varchar(100)
+
       - name: highest_education 
         data_type: varchar(200)
+
       - name: idm_band
         data_type: varchar(20)
+
       - name: idm_lower_band
         data_type: int
+
       - name: idm_upper_band
         data_type: int
+
       - name: age_band
         data_type: varchar(20)
+
       - name: age_lower_band
         data_type: int
+
       - name: age_upper_band
         data_type: int
-        data_type: varchar(20)
+
       - name: studied_credits
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
-      - name: is_banked
+
+      - name: is_disabled
         data_type: boolean
-        constraints:
-          - type: default
-            expression: false
+        
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+    
   
   - name: fact_student_registrations
     config:
@@ -148,40 +149,36 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: student_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_students')
             to_column: [student_id]
+
       - name: presentation_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_module_presentations')
             to_column: [presentation_id]
+
       - name: number_of_prev_attempts
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: registration_date_offset
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: unregistered_date_offset
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: final_result
         data_type: varchar(50)
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+
       - name: updated_at
         data_type: timestamp
 
@@ -195,35 +192,33 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: assessment_code
         data_type: varchar(20)
         constraints:
           - type: not_null
+
       - name: presentation_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_module_presentations')
             to_column: [presentation_id]
+
       - name: assessment_type
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: submission_date_offset
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: assessment_weight
         data_type: numeric(4,1)
-        constraints:
-          - type: default
-            expression: 0
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+
       - name: updated_at
         data_type: timestamp
   
@@ -237,40 +232,35 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: student_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_students')
             to_column: [student_id]
+
       - name: assessment_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_assessments')
             to_column: [assessment_id]
+
       - name: date_submitted_offset
         data_type: int
+
       - name: is_banked
         data_type: boolean
-        constraints:
-          - type: default
-            expression: false
+
       - name: score
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
   
   - name: dim_vles
     config:
@@ -282,37 +272,35 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: site_id
-        data_type: varchar(20)
-        constraints:
-          - type: not_null
-          - type: unique
+        data_type: int
+
       - name: presentation_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_module_presentations')
             to_column: [presentation_id]
+
       - name: vle_activity_type_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_vle_activity_types')
             to_column: [vle_activity_type_id]
+
       - name: week_from
         data_type: int
+
       - name: week_to
         data_type: int
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
   
   - name: fact_student_vles
     config:
@@ -324,30 +312,30 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+
       - name: student_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_students')
             to_column: [student_id]
+
       - name: vle_id
         data_type: varchar(100)
         constraints:
           - type: foreign_key
             to: ref('dim_vles')
             to_column: [vle_id]
+
       - name: access_date_offset
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: sum_click
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
+      
+      - name: updated_at
+        data_type: timestamp
+        

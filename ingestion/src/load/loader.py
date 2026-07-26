@@ -4,8 +4,6 @@ from src.config.column_mapping import ASSESSMENT_COLUMN_MAPPING
 from src.config.env_vars import DATA_ROOT_PATH
 from src.config.logger_config import get_logger
 from src.util.util import copy_data_to_db, get_ordered_db_table_columns, moved_files
-from src.config.general_config import LOAD_PIPELINES
-
 
 
 
@@ -19,7 +17,7 @@ def load_raw_data(file_name:str, column_mapping:dict[str,str],table_name:str,log
         db_connection = db_connection_pool.getconn()
 
         file_path = f"{DATA_ROOT_PATH}/{file_name}"
-        
+
         if os.path.isfile(file_path):
 
             columns = get_ordered_db_table_columns(file_path=file_path, column_mapping=column_mapping)

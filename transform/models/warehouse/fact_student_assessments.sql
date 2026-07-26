@@ -1,6 +1,7 @@
 {{ config(
     materialized = 'incremental',
-    unique_key = 'student_assessment_id'
+    unique_key = 'student_assessment_id',
+    on_schema_change='append_new_columns'
 ) }}
 
 select

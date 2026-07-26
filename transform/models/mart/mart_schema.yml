@@ -2,7 +2,7 @@
 version: 2
 
 models:
-  - name: mart_student_perfomance
+  - name: mart_student_performance
     config:
       contract:
         enforced: true
@@ -76,12 +76,6 @@ models:
 
       - name: created_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp
 
       - name: updated_at
         data_type: timestamp
-        constraints:
-          - type: default 
-            expression: current_timestamp

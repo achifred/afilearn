@@ -1,7 +1,8 @@
 {{
     config(
         materialized = 'incremental',
-        unique_key = 'vle_id'
+        unique_key = 'vle_id',
+        on_schema_change='append_new_columns'
     )  
 }}
 
@@ -17,6 +18,6 @@ select
     current_timestamp as updated_at
 from {{ ref('stg_vles') }} sv
 inner join {{ ref('dim_modules') }} dm on sv.module_code = dm.module_code
-inner join {{ ref('dim_presentations') }} dp 
+inner join {{ ref('dim_module_presentations') }} dp 
 on dm.module_id = dp.module_id and dp.presenatation_code = sv.presenatation_code
 inner join {{ ref('dim_vle_activity_types') }} dat on sv.activity_type = dat.vle_activity_type

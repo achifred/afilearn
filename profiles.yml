@@ -1,6 +1,5 @@
 afilearn:
   target: "{{env_var('APP_ENV','dev')}}"
-
   outputs:
     dev:
       type: "{{ env_var('DB_TYPE', 'postgres') }}"

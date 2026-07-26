@@ -9,10 +9,12 @@ models:
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: presentation_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: module_presentation_length
         data_type: int
   
@@ -23,47 +25,53 @@ models:
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: presentation_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: student_id
         data_type: int
         constraints:
           - type: not_null
+
       - name: gender
         data_type: varchar(5)
+
       - name: region
         data_type: varchar(100)
+
       - name: highest_education 
         data_type: varchar(200)
+
       - name: idm_band
         data_type: varchar(20)
+
       - name: idm_lower_band
         data_type: int
+
       - name: idm_upper_band
         data_type: int
+
       - name: age_band
         data_type: varchar(20)
+
       - name: age_lower_band
         data_type: int
+
       - name: age_upper_band
         data_type: int
+
       - name: number_of_prev_attempts
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: studied_credits
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: is_disabled
         data_type: boolean
-        constraints:
-          - type: default
-            expression: false
+
       - name: final_result
         data_type: varchar(100)
      
@@ -75,16 +83,20 @@ models:
         data_type: bigint
         constraints:
           - type: not_null 
+
       - name: module_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: presentation_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: date_registered_offset
         data_type: int
+
       - name: date_unregistered_offset
         data_type: int
 
@@ -95,25 +107,27 @@ models:
         data_type: int
         constraints:
           - type: not_null
+
       - name: module_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: presentation_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: assessment_type
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: submission_date_offset
         data_type: int
+
       - name: assessment_weight
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
   
   - name: stg_student_assessments
     description: "staging table for student assessments"
@@ -122,40 +136,46 @@ models:
         data_type: int
         constraints:
           - type: not_null
+
       - name: student_id
         data_type: int
         constraints:
           - type: not_null
+
       - name: date_submitted_offset
         data_type: int
+
       - name: is_banked
         data_type: boolean
-        constraints:
-          - type: default
-            expression: false
+
       - name: score
         data_type: int
 
   
-  - name: vles
+  - name: stg_vles
     description: "table for vles"
     columns:
       - name: site_id
         data_type: bigint
         constraints:
           - type: not_null
+
       - name: module_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: presentation_code
         data_type: varchar(10)
         constraints:
           - type: not_null
+
       - name: activity_type
         data_type: varchar(50)
+
       - name: week_from
         data_type: int
+
       - name: week_to
         data_type: int
       
@@ -165,20 +185,19 @@ models:
     columns:
       - name: module_code
         data_type: varchar(10)
+
       - name: presentation_code
         data_type: varchar(10)
+
       - name: student_id
         data_type: bigint
+
       - name: site_id
         data_type: bigint
+
       - name: access_date_offset
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
+
       - name: sum_click
         data_type: int
-        constraints:
-          - type: default
-            expression: 0
       

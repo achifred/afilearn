@@ -2,6 +2,7 @@
     config(
         materialized = 'incremental',
         unique_key = 'presentation_id',
+        on_schema_change='append_new_columns'
     )
 }}
 
@@ -13,4 +14,4 @@ select
     current_timestamp as created_at,
     current_timestamp as updated_at
 from {{ ref('stg_courses') }} c
-inner join {{ ref('stg_modules') }} m on c.code_module = m.module_code
+inner join {{ ref('dim_modules') }} m on c.code_module = m.module_code

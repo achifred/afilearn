@@ -2,6 +2,7 @@
     config(
         materialized = 'incremental',
         unique_key = 'student_id',
+        on_schema_change='append_new_columns'
     )
 }}
 

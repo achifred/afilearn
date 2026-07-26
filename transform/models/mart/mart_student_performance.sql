@@ -1,6 +1,8 @@
 {{
     confing(
     materialized = 'incremental',
+    unique_key = 'student_perfomance_id',
+    on_schema_change='append_new_columns'
     )
 }}
 
@@ -14,7 +16,7 @@ with student_assessment_summary as (
         min(score) as lowest_assesssment_score,
         count(student_assessment_id) as assessments_submitted
     
-    from {{ ref('fact_student_assesssments') }}
+    from {{ ref('fact_student_assessments') }}
     group by student_id, assessment_id
 ),
 
@@ -50,7 +52,7 @@ select
     r.final_result,
     {{ is_passed('final_result') }} as is_passed
 from registration r
-inner join {{ ref('dim_presentations') }} dp on r.presentation_id = dp.presentation_id
+inner join {{ ref('dim_module_presentations') }} dp on r.presentation_id = dp.presentation_id
 left join student_assessment_summary sas on r.student_id = sas.student_id
 left join student_vle_summary svs 
 on r.student_id = svs.student_id and r.presentation_id = svs.presentation_id

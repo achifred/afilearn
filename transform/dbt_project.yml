@@ -45,3 +45,4 @@ models:
       +schema: mart
       +materialized: incremental
       +tags: ["mart"]
+      +on_schema_change: "append_new_columns" 
