@@ -1,12 +1,12 @@
-import datetime
 import psycopg
 import pandas as pd
 import shutil
+from datetime import datetime, UTC
 from psycopg import sql
 from typing import Optional
 from logging import Logger
 from pathlib import Path
-from config.config import FAILED_DATA_PATH, PROCESSED_DATA_PATH, DATA_ROOT_PATH
+from src.config.env_vars import FAILED_DATA_PATH, PROCESSED_DATA_PATH, DATA_ROOT_PATH
 
 
 
@@ -69,7 +69,7 @@ def moved_files(file_name: str,  is_processed: bool) -> Path:
     destination_dir.mkdir(parents=True, exist_ok=True)
     source = source_dir/file_name
 
-    timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    timestamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
     new_name = f"{timestamp}_{file_name}"
     
     target = destination_dir/new_name
@@ -77,3 +77,22 @@ def moved_files(file_name: str,  is_processed: bool) -> Path:
     shutil.move(source, target)
 
     return target
+
+
+def get_rooth_path():
+    current_path = Path(__file__).resolve()
+
+    for parent in current_path.parents:
+        if (parent/".gitignore").exists():
+            return parent
+    
+    return current_path.parents[2]
+
+PROJECT_ROOT = get_rooth_path()
+def get_path(*path_name:str):
+
+    target_path = PROJECT_ROOT.joinpath(*path_name)
+
+    target_path.parent.mkdir(parents=True, exist_ok=True)
+    return target_path
+

@@ -1,11 +1,11 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
-from config.config import MAX_LOG_FILE_SIZE
+from src.config.env_vars import MAX_LOG_FILE_SIZE
 
-
-LOG_DIR = Path("logs")
-LOG_DIR.mkdir(exist_ok=True)
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+LOG_DIR = PROJECT_ROOT/"logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def get_logger(name:str, log_file:str, log_level=logging.INFO):
@@ -18,7 +18,7 @@ def get_logger(name:str, log_file:str, log_level=logging.INFO):
     
     logger.setLevel(log_level)
     formatter = logging.Formatter(
-        fmt= "%(acstime)s | %(levelname)s | %(name)s | %(message)s",
+        fmt= "%(asctime)s | %(levelname)s | %(name)s | %(message)s",
         datefmt= "%Y-%m-%d %H:%M:$S"
     )
 

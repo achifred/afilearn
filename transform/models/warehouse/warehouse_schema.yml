@@ -35,14 +35,14 @@ models:
     description: "table for module presentations."
     columns:
       - name: presentation_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: primary_key
       - name: module_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: foreign_key
-            to: ref('modules')
+            to: ref('dim_modules')
             to_column: [module_id]
       - name: presentation_code
         data_type: varchar(10)
@@ -145,7 +145,7 @@ models:
     description: "table for student registrations"
     columns:
       - name: registration_id
-        data_type: bigint
+        data_type: varchar(100)
         constraints:
           - type: primary_key
       - name: student_id

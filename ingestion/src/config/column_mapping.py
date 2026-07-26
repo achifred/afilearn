@@ -25,7 +25,7 @@ ASSESSMENT_COLUMN_MAPPING = {
     "code_presentation":"code_presentation",
     "id_assessment":"id_assessment",
     "assessment_type":"assessment_type",
-    "date":"assessment_date",
+    "date":"date",
     "weight":"weight"
 }
 
@@ -51,7 +51,7 @@ STUDENT_VLE_COLUMN_MAPPING = {
     "code_presentation":"code_presentation",
     "id_student":"id_student",
     "id_site":"id_site",
-    "date":"date_accessed",
+    "date":"date",
     "sum_click":"sum_click"
 }
 

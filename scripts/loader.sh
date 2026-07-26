@@ -4,6 +4,6 @@ source "$(dirname "$0")/common.sh"
 
 log "Loading CSV files into RAW schema"
 
-cd "$PROJECT_ROOT"
+cd "$PROJECT_ROOT"/ingestion
 
-python ingestion/src/main.py
+python -m src.main
