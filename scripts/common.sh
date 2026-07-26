@@ -9,6 +9,10 @@ mkdir -p "$LOG_DIR"
 
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
+cd "$PROJECT_ROOT/transform"
+dbt deps
+cd ..
+
 log() {
     echo
     echo "================================================"
