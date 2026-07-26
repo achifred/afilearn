@@ -9,26 +9,26 @@
 
 select
     {{ dbt_utils.generate_surrogate_key([
-        'sr.id_student',
-        'sr.code_module',
-        'sr.code_presentation'
+        'sr.student_id',
+        'sr.module_code',
+        'sr.presentation_code'
     ])}} as registration_id,
     ds.student_id,
     p.presentation_id,
-    si.num_of_prev_attempts::int as number_of_prev_attempts,
-    sr.date_registration::int as registration_date_offset,
-    sr.date_unregistration::int as unregistered_date_offset,
+    si.number_of_prev_attempts,
+    sr.date_registered_offset,
+    sr.date_unregistered_offset,
     si.final_result as final_result,
-    current_timestamp as created_at,
-    current_timestamp as updated_at
+    current_timestamp::timestamp as created_at,
+    current_timestamp::timestamp as updated_at
     from {{ref('stg_student_registrations')}} sr
     inner join {{ ref('stg_student_info') }} si 
-    on sr.id_student = si.student_id 
-    and sr.code_module = si.code_module
-    and sr.code_presentation = si.code_presentation
+    on sr.student_id = si.student_id 
+    and sr.module_code = si.module_code
+    and sr.presentation_code = si.presentation_code
     inner join {{ ref('dim_students') }} ds
     on si.student_id = ds.student_number
-    inner join {{ ref('dim_modules') }} m on sr.code_module = m.module_code
+    inner join {{ ref('dim_modules') }} m on sr.module_code = m.module_code
     inner join {{ ref('dim_module_presentations') }} p 
     on m.module_id = p.module_id 
     and p.presentation_code = sr.presentation_code

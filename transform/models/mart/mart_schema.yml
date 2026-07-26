@@ -17,35 +17,35 @@ models:
           - type: primary_key
 
       - name: student_id
-        data_type: varchar(10)
+        data_type: varchar(100)
         constraints:
           - type: not_null
 
       - name: module_id
-        data_type: varchar(10)
+        data_type: varchar(100)
         constraints:
           - type: not_null
 
       - name: presentation_id
-        data_type: varchar(10)
+        data_type: varchar(100)
         constraints:
           - type: not_null
 
       - name: total_assessment
         description: "total assessments available for student for the module"
-        data_type: int
+        data_type: bigint
         constraints:
           - type: not_null
 
       - name: assessments_submitted
         description: "total assessments submitted by student"
-        data_type: int
+        data_type: bigint
         constraints:
           - type: not_null
 
 
       - name: average_assessment_score
-        data_type: information
+        data_type: decimal
         constraints:
           - type: not_null
 
@@ -60,7 +60,7 @@ models:
           - type: not_null
 
       - name: total_vle_clicks
-        data_type: int
+        data_type: bigint
         constraints:
           - type: not_null
 

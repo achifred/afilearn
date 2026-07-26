@@ -22,7 +22,6 @@ models:
       - name: created_at
         data_type: timestamp
         
-
       - name: updated_at
         data_type: timestamp
         
@@ -54,8 +53,7 @@ models:
         data_type: int
 
       - name: created_at
-        data_type: timestamp
-        
+        data_type: timestamp 
 
       - name: updated_at
         data_type: timestamp
@@ -95,6 +93,7 @@ models:
         data_type: varchar(100)
         constraints:
           - type: primary_key
+          - type: unique
 
       - name: student_number
         data_type: int
@@ -167,10 +166,10 @@ models:
       - name: number_of_prev_attempts
         data_type: int
 
-      - name: registration_date_offset
+      - name: date_registered_offset
         data_type: int
 
-      - name: unregistered_date_offset
+      - name: date_unregistered_offset
         data_type: int
 
       - name: final_result
@@ -194,7 +193,7 @@ models:
           - type: primary_key
 
       - name: assessment_code
-        data_type: varchar(20)
+        data_type: int
         constraints:
           - type: not_null
 

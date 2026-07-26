@@ -4,7 +4,7 @@
 
 select
     trim(code_module) as module_code,
-    trim(code_presentation) as presenatation_code,
+    trim(code_presentation) as presentation_code,
     id_student::int as student_id,
     trim(gender) as gender,
     region,
