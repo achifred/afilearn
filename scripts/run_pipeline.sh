@@ -17,6 +17,8 @@ echo "=========================================="
 
 "$SCRIPT_DIR/run_marts.sh"
 
+"$SCRIPT_DIR/run_create_indexes.sh"
+
 echo
 echo "=========================================="
 echo "ELT Pipeline completed successfully!"
