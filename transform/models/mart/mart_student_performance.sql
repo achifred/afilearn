@@ -1,7 +1,7 @@
 {{
     config(
     materialized = 'incremental',
-    unique_key = 'student_perfomance_id',
+    unique_key = 'student_performance_id',
     on_schema_change='append_new_columns'
     )
 }}
@@ -39,7 +39,7 @@ registration as (
 )
 
 select 
-    {{ dbt_utils.generate_surrogate_key(['r.student_id','r.presentation_id']) }} as student_perfomance_id,
+    {{ dbt_utils.generate_surrogate_key(['r.student_id','r.presentation_id']) }} as student_performance_id,
     r.student_id,
     dp.module_id,
     r.presentation_id,

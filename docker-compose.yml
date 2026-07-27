@@ -1,6 +1,6 @@
 services:
   pipeline:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     container_name: elt-load-pipeline
@@ -13,7 +13,6 @@ services:
 
     command: python -m app.main
 
-  
   db:
     image: postgres:17-alpine
     container_name: eltdb
@@ -23,7 +22,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     ports:
-      -'5432:5432'
+      - "5432:5432"
     volumes:
       - dbdata:/var/lib/postgresql/data
 
@@ -34,5 +33,26 @@ services:
       retries: 5
       start_period: 30s
 
+  mongodb:
+    image: mongo:7.0-jammy
+    container_name: mongodb_nosql
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-secret_password}
+      MONGO_INITDB_DATABASE: ${MONGO_DB:-afilearn_nosql}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
 volumes:
   dbdata:
+  mongodata:

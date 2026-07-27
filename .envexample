@@ -9,3 +9,10 @@ BATCH_SIZE=100
 DATA_ROOT_PATH=root_path_to_raw_csv_data_files
 FAILED_DATA_PATH=path_failed_csv_data_file
 PROCESSED_DATA_PATH=path_to_processed_csv_data_files
+
+# MongoDB NoSQL Configuration
+MONGO_HOST=localhost
+MONGO_PORT=27017
+MONGO_DB=afilearn_nosql
+MONGO_USER=admin
+MONGO_PASSWORD=secret_password

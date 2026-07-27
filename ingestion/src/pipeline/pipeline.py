@@ -6,14 +6,14 @@ from src.load.loader import load_raw_data
 
 logger = get_logger(name=__name__,log_file="pipeline.log")
 
-sql_apth = get_path("sql/create_loading_tables.sql")
+sql_path = get_path("sql/create_loading_tables.sql")
 
 def run_schema():
    try:
         con = db_connection_pool.getconn()
 
         with con.cursor() as cur:
-            with open(sql_apth,'r') as f:
+            with open(sql_path,'r') as f:
                 sql_queries = f.read()
                 cur.execute(sql_queries)
 
@@ -32,7 +32,7 @@ def run_pipeline():
     logger.info("Starting load data pipeline")
     for item in LOAD_PIPELINES:
         
-        logger.info(f"loadding {item["file_name"]} data.....")
+        logger.info(f"loading {item['file_name']} data.....")
 
         file_name = item["file_name"]
         column_mapping =item["column_mapping"]

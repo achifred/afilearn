@@ -79,7 +79,7 @@ def moved_files(file_name: str,  is_processed: bool) -> Path:
     return target
 
 
-def get_rooth_path():
+def get_root_path():
     current_path = Path(__file__).resolve()
 
     for parent in current_path.parents:
@@ -88,7 +88,7 @@ def get_rooth_path():
     
     return current_path.parents[2]
 
-PROJECT_ROOT = get_rooth_path()
+PROJECT_ROOT = get_root_path()
 def get_path(*path_name:str):
 
     target_path = PROJECT_ROOT.joinpath(*path_name)

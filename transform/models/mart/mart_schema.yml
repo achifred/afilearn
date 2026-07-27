@@ -11,7 +11,7 @@ models:
       student-module-presentation level"
 
     columns:
-      - name: student_perfomance_id
+      - name: student_performance_id
         data_type: varchar(100)
         constraints:
           - type: primary_key
