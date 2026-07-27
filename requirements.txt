@@ -15,6 +15,7 @@ dbt-extractor==0.6.0
 dbt-postgres==1.11.0
 dbt-protos==1.0.541
 deepdiff==8.6.2
+dnspython==2.8.0
 idna==3.18
 importlib_metadata==9.0.0
 isodate==0.7.2
@@ -39,9 +40,12 @@ psycopg==3.3.4
 psycopg-binary==3.3.4
 psycopg-pool==3.3.1
 psycopg2-binary==2.9.12
+py4j==0.10.9.9
+pyarrow==25.0.0
 pydantic==2.13.4
 pydantic_core==2.46.4
 pymongo==4.10.1
+pyspark==4.2.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 python-slugify==8.0.4
@@ -52,6 +56,7 @@ RapidFuzz==3.14.5
 referencing==0.37.0
 requests==2.34.2
 rpds-py==2026.6.3
+setuptools==83.0.0
 six==1.17.0
 snowplow-tracker==1.1.0
 SQLAlchemy==2.0.51
