@@ -47,7 +47,7 @@ The following scripts are available:
 Loads the source data into the raw tables.
 
 ```bash
-./loader.sh
+./run_loader.sh
 ```
 
 ### Populate Staging Tables
@@ -86,7 +86,7 @@ Executes the entire pipeline from raw data loading through data mart creation.
 
 The scripts should be run in the following order:
 
-1. `loader.sh`
+1. `run_loader.sh`
 2. `run_staging.sh`
 3. `run_warehouse.sh`
 4. `run_marts.sh`
@@ -102,7 +102,7 @@ Alternatively, run the entire pipeline with:
 ```
 project-root/
 ├── scripts/
-│   ├── loader.sh
+│   ├── run_loader.sh
 │   ├── run_staging.sh
 │   ├── run_warehouse.sh
 │   ├── run_marts.sh

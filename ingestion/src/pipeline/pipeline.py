@@ -32,7 +32,7 @@ def run_pipeline():
     logger.info("Starting load data pipeline")
     for item in LOAD_PIPELINES:
         
-        logger.info(f"loadding {item["file_name"]} data.....")
+        logger.info(f"loadding {item['file_name']} data.....")
 
         file_name = item["file_name"]
         column_mapping =item["column_mapping"]
