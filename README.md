@@ -130,7 +130,7 @@ Each database paradigm in AfiLearn is intentionally selected to answer specific 
 ---
 
 ### ⚡ Paradigm 3: Big Data Distributed Processing (Apache PySpark)
-**Implementation**: Implements distributed in-memory data processing (`bigdata/src/`) designed to handle high-volume event logging (such as the 10.6+ million records in `student_vle.csv` and `student_assessment.csv`) that would cause bottlenecks in traditional OLTP relational databases. Outputs partitioned `.parquet` files for downstream BI tools.
+**Implementation**: Implements distributed in-memory data processing (`bigdata/src/`) designed to handle high-volume event logging (such as the 10.6+ million records in `student_vle.csv` and `student_assessment.csv`) that would cause bottlenecks in traditional OLTP relational databases. Outputs partitioned `.parquet` files for downstream BI tools
 
 **Questions We Answer**:
 1. **Course Presentation Difficulty & Attrition Index**: *What is the structural difficulty index of each course presentation over time, and how do pass/fail ratios shift across academic years?*
