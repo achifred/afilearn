@@ -33,6 +33,17 @@ services:
       retries: 5
       start_period: 30s
 
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-richkidcypher1@gmail.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    depends_on:
+      - db
+
   mongodb:
     image: mongo:7.0-jammy
     container_name: mongodb_nosql
@@ -52,6 +63,20 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USER:-admin}:${MONGO_PASSWORD:-secret_password}@mongodb:27017/
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_USER:-admin}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_PASSWORD:-secret_password}
+    depends_on:
+      mongodb:
+        condition: service_healthy
 
 volumes:
   dbdata:
