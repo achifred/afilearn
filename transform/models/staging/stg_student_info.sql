@@ -18,5 +18,5 @@ select
     num_of_prev_attempts::int as number_of_prev_attempts,
     studied_credits::int as studied_credits,
     {{ boolean_resolver('disability') }} as is_disabled,
-    final_result
+    {{ standardize_result('final_result') }} as final_result
 from {{ source('raw', 'student_info') }}

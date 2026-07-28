@@ -83,6 +83,7 @@ data/processing/*
 data/raw/*
 data/processed/*
 data/failed/*
+data/explore
 
 # Keep the folders in Git
 !data/incoming/.gitkeep

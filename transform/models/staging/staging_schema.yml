@@ -74,6 +74,9 @@ models:
 
       - name: final_result
         data_type: varchar(100)
+        tests:
+          - accepted_values:
+              values: ['Pass', 'Withdrawn', 'Fail','Distinction']
      
   
   - name: stg_student_registrations
@@ -122,12 +125,18 @@ models:
         data_type: varchar(10)
         constraints:
           - type: not_null
+        tests:
+          - accepted_values:
+              values: ['TMA', 'CMA', 'Exam']
 
       - name: submission_date_offset
         data_type: int
 
       - name: assessment_weight
         data_type: int
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: " >= 0 and assessment_weight <= 100"
   
   - name: stg_student_assessments
     description: "staging table for student assessments"
@@ -150,6 +159,9 @@ models:
 
       - name: score
         data_type: int
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0 and score <= 100"
 
   
   - name: stg_vles

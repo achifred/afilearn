@@ -18,7 +18,7 @@ def load_raw_data(file_name:str, column_mapping:dict[str,str],table_name:str,log
 
         file_path = f"{DATA_ROOT_PATH}/{file_name}"
 
-        if os.path.isfile(file_path):
+        if os.path.isfile(file_path) and os.path.getsize(file_path) > 0:
 
             columns = get_ordered_db_table_columns(file_path=file_path, column_mapping=column_mapping)
 

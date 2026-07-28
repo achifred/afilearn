@@ -9,7 +9,7 @@ echo "=========================================="
 echo "Starting ELT Pipeline"
 echo "=========================================="
 
-"$SCRIPT_DIR/loader.sh"
+"$SCRIPT_DIR/run_loader.sh"
 
 "$SCRIPT_DIR/run_staging.sh"
 
