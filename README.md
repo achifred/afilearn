@@ -1,3 +1,9 @@
+#GROUP MEMBERS (MANAGERS)
+1. Margaret Naa Dei Neequaye - 22425065
+2. ⁠Richmond Martey - 22424349
+3. Fred Achi -22424751
+4. ⁠Princilla Abena Koranteng - 22426030
+
 # AfiLearn: Multi-Engine Learning Analytics Data Platform
 
 An end-to-end learning analytics data engineering platform built on the Open University Learning Analytics Dataset (OULAD). This project implements a modern multi-engine architecture combining **Relational ELT (PostgreSQL + dbt)**, **NoSQL Document Modeling (MongoDB)**, and **Distributed Big Data Processing (Apache PySpark)** to answer critical educational questions at scale.
