@@ -3,7 +3,7 @@
 This document provides a high-level overview of the key entities and relationships within the AFilearn system. The ERD serves as a blueprint for understanding the data model and guiding the development process.
 
 ## Entities
-1. **Student**
+1. **dim_students**
     
     Represents every student enrolled in the AFilearn platform
 
@@ -14,12 +14,17 @@ This document provides a high-level overview of the key entities and relationshi
     - Region
     - HighestEducation
     - IdmBand
+    - LowerIdmBand
+    - UpperIdmBand
     - AgeBand
+    - LowerAgeBand
+    - UpperAgeBand
+    - StudiedCredits
     - IsDisabled
     - CreatedAt
     - UpdatedAt
 
-2. **Module**
+2. **dim_Module**
 
     Represents a learning module within the AFilearn platform
 
@@ -30,33 +35,32 @@ This document provides a high-level overview of the key entities and relationshi
     - CreatedAt
     - UpdatedAt
 
-3. **Presentation**
+3. **dim_module_presentations**
 
     Represents a presentation of module within the AFilearn platform
 
     Attributes:
 
     - Presentation ID (Primary key)
-    - Year
-    - Semester
+    - Module ID (Foreign key)
     - PresentationCode
+    - ModulePresentationLength
     - CreatedAt
     - UpdatedAt
 
-4. **Assessment**
+4. **dim_assessment**
 
     Represents an assessment within the AFilearn platform
 
     Attributes:
 
     - Assessment ID (Primary key)
-    - Module ID (Foreign key)
-    - Presentation ID (Foreign key)
+    - ModulePresentation ID (Foreign key)
     - AssessmentType
     - SubmissionDate_offset
     - AssessmentWeight
 
-5. **StudentRegistration**
+5. **fact_student_registrations**
 
     Represents the registration of a student for a specific module presentation within the AFilearn platform
 
@@ -64,15 +68,13 @@ This document provides a high-level overview of the key entities and relationshi
 
     - Registration ID (Primary key)
     - Student ID (Foreign key)
-    - Module ID (Foreign key)
-    - Presentation ID (Foreign key)
+    - ModulePresentation ID (Foreign key)
     - NumberOfPrevAttempts
-    - StudiedCredits
     - RegistrationDate_offset
     - UnregistrationDate_offset
     - FinalResult
 
-6. **StudentAssessment**
+6. **fact_student_assessment**
 
     Represents the assessment results of a student for a specific module presentation within the AFilearn platform
 
@@ -85,20 +87,8 @@ This document provides a high-level overview of the key entities and relationshi
     - IsBanked
     - Score
 
-7. **ModulePresentation**
 
-    Represents a specific offering of a module within a particular academic term
-
-    Attributes:
-
-    - ModulePresentation ID (Primary key)
-    - Module ID (Foreign key)
-    - Presentation ID (Foreign key)
-    - ModulePresentationLength
-    - CreatedAt
-    - UpdatedAt
-
-8. **VleActivityType**
+7. **dim_vle_activity_type**
 
     Represents a specific activity within a module presentation
 
@@ -107,20 +97,19 @@ This document provides a high-level overview of the key entities and relationshi
     - VleActivityTypeID (Primary key)
     - VleActivityName
 
-9. **Vle**
+8. **Dim_Vle**
 
     Represents a virtual learning environment resource within a module presentation
 
     Attributes:
 
     - VleID (Primary key)
-    - ModuleID (Foreign key)
-    - PresentationID (Foreign key)
+    - ModulePresentationID (Foreign key)
     - ActivityTypeID (Foreign key)
     - WeekFrom
     - WeekTo
 
-10. **StudentVle**
+9. **Fact_StudentVle**
 
     Represents the association between a student and a virtual learning environment resource
 
@@ -131,3 +120,20 @@ This document provides a high-level overview of the key entities and relationshi
     - VleID (Foreign key)
     - AccessDate_offset
     - NumberOfClicks
+
+10. **Mart_Student_Performance**
+
+    Represents a summary of student performance metrics
+
+    Attributes:
+
+    - StudentPerformanceID (Primary key)
+    - StudentID (Foreign key)
+    - ModulePresentationID (Foreign key)
+    - TotalAssessment
+    - AverageAssessmentScore
+    - LowestAssessmentScore
+    - HighestAssessmentScore
+    - TotalVleClicks
+    - FinalResult
+    - IsPassed
